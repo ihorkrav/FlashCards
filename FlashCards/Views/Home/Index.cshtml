@@ -1,0 +1,27 @@
+﻿@using FlashCards.Data.Entities;
+@model List<Deck>;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <ol id="main_window_decks_list">
+        @foreach (var item in Model)
+        {
+        <li>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">@item.AmountOfCards</h6>
+                        <button type="button" class="btn btn-success">Learn</button>
+                        <button type="button" class="btn btn-warning">Save</button>
+                        <button type="button" class="btn btn-info">View</button>
+                </div>
+            </div>
+        </li>
+            
+        }
+
+    </ol>
+</div>

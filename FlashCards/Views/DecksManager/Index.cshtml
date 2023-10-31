@@ -1,0 +1,30 @@
+﻿@using FlashCards.Data.Entities;
+@model List<Deck>;
+@{
+    
+    ViewData["Title"] = "Home Page";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Cards</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Title</td>
+                <td>@item.AmountOfCards</td>
+                <td><button type="button" class="btn btn-warning">Edit</button></td>
+                <td><a  asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+       
+    </tbody>
+</table>
