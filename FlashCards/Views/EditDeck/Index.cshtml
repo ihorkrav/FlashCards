@@ -1,0 +1,26 @@
+﻿@using FlashCards.Data.Entities;
+@model DeckData;
+
+@{
+}
+<h1><input type="text" placeholder="@Model.Deck.Title"></input></h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Front</th>
+            <th scope="col">Back</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cards)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td><input type="text" placeholder="@item.FrontData"></input></td>
+                <td><input type="text" placeholder="@item.BackData"></input></td>
+            </tr>
+            
+        }
+    </tbody>
+</table>

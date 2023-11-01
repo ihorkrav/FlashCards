@@ -26,5 +26,10 @@ namespace FlashCards.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult Edit(int id)
+        {
+            
+            return RedirectToAction("Index", "EditDeck", new { Id = id, CTX = ctx});
+        }
     }
 }
