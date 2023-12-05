@@ -1,9 +1,26 @@
-﻿@using FlashCards.Data.Entities;
+﻿@using DataAccess.Data.Entities;
 @model DeckData;
-
 @{
 }
-<h1><input type="text" placeholder="@Model.Deck.Title"></input></h1>
+<form asp-action="Add" method="post" enctype="multipart/form-data" class="row g-3">
+@*<form>*@
+<h1><input asp-for="Deck.Title" type="text" value="@Model.Deck.Title"/></h1>
+<div>
+       @* <form asp-action="Update" asp-controller="EditDeckController" method="post"> *@
+
+        <p>Front:</p>
+        <input placeholder="Front data" type="text" id="FrontData" name="FrontData" value="">
+        <p>Back</p>
+        <input placeholder="Back data" type="text" id="BackData" name="BackData" value="">
+        <input placeholder="Deck id" type="text" id="DeckID" name="DeckID" value="">
+
+        <button type="submit">Add</button>
+        @*</form>*@
+       
+    </div>
+</form>
+<form asp-action="Add" method="post" enctype="multipart/form-data" class="row g-3">
+
 <table class="table">
     <thead>
         <tr>
@@ -13,14 +30,24 @@
         </tr>
     </thead>
     <tbody>
+        @{int i =1;}
         @foreach (var item in Model.Cards)
         {
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td><input type="text" placeholder="@item.FrontData"></input></td>
-                <td><input type="text" placeholder="@item.BackData"></input></td>
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>
+                        <input placeholder="Front data" type="text" id="FrontData" name="FrontData" value="@item.FrontData">
+                    </td>
+                    <td><input placeholder="Front data" type="text" id="FrontData" name="FrontData" value="@item.BackData"></td>
+                <td>
+                    <a asp-action="Add" type="submit">Save</a>
+                    <button>Delete</button></td>
             </tr>
-            
-        }
+                
+           i++;
+                
+            }
     </tbody>
 </table>
+        <a asp-action="SaveChanges" class="btn btn-success">Save</a>
+</form>

@@ -1,14 +1,22 @@
-﻿using FlashCards.Data.Entities;
+﻿using DataAccess.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlashCards.Data
+namespace DataAccess.Data
 {
     public class DeckDbContext: DbContext
     {
+        public DeckDbContext()
+        {
+
+        }
+        public DeckDbContext(DbContextOptions options):base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CardsDb;Integrated Security=True; MultipleActiveResultSets=true; Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+           // optionsBuilder.UseSqlServer("Data Source=(localdb)\\\\\\\\MSSQLLocalDB;Initial Catalog=CardsDb;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

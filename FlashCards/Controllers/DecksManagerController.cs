@@ -1,12 +1,17 @@
-﻿using FlashCards.Data;
-using FlashCards.Data.Entities;
+﻿using DataAccess.Data;
+
+using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlashCards.Controllers
 {
     public class DecksManagerController : Controller
     {
-        DeckDbContext ctx = new DeckDbContext();
+        DeckDbContext ctx ;
+        public DecksManagerController(DeckDbContext ctx) // Dependency Injection
+        {
+            this.ctx = ctx;
+        }
         public IActionResult Index()
         {
             var decks = ctx.Decks.ToList();
@@ -24,6 +29,12 @@ namespace FlashCards.Controllers
                 ctx.Remove(item);
                 ctx.SaveChanges();
             }
+            return RedirectToAction("Index");
+        }
+        public IActionResult Update(DeckDbContext ctx_)
+        {
+            ctx = ctx_;
+            ctx.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)

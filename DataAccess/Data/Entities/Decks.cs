@@ -1,4 +1,4 @@
-﻿namespace FlashCards.Data.Entities
+﻿namespace DataAccess.Data.Entities
 {
     public class Deck
     {

@@ -1,5 +1,5 @@
-﻿using FlashCards.Data;
-using FlashCards.Data.Entities;
+﻿using DataAccess.Data;
+using DataAccess.Data.Entities;
 using FlashCards.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,17 +9,16 @@ namespace FlashCards.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private readonly DeckDbContext dbc;
         //List<Decks> Decks = new List<Decks>;
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController( DeckDbContext dbc)
         {
-            _logger = logger;
+            this.dbc = dbc;
         }
 
-        DeckDbContext db = new DeckDbContext();
         public IActionResult Index()
         {
-            var decks = db.Decks.ToList();
+            var decks = dbc.Decks.ToList();
             return View(decks);
         }
 

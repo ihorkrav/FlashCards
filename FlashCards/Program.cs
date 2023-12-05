@@ -1,3 +1,6 @@
+using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FlashCards
 {
     public class Program
@@ -5,10 +8,10 @@ namespace FlashCards
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            string con = builder.Configuration.GetConnectionString("LocalDb");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<DeckDbContext>(opt=>opt.UseSqlServer(con));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
